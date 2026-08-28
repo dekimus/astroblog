@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ photo.title }}{% endblock %}
+
+{% block content %}
+<article class="photo-detail">
+    <h1>{{ photo.title }}</h1>
+
+    <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}"
+         alt="{{ photo.title }}" class="photo-full">
+
+    {% if photo.description %}
+        <p class="description">{{ photo.description }}</p>
+    {% endif %}
+
+    <dl class="photo-meta">
+        {% if photo.capture_date %}
+            <div class="meta-item">
+                <dt>Fecha de captura</dt>
+                <dd>{{ photo.capture_date.strftime('%d/%m/%Y') }}</dd>
+            </div>
+        {% endif %}
+        {% if photo.location %}
+            <div class="meta-item">
+                <dt>Ubicación</dt>
+                <dd>{{ photo.location }}</dd>
+            </div>
+        {% endif %}
+        {% if photo.telescopio %}
+            <div class="meta-item">
+                <dt>Telescopio</dt>
+                <dd>{{ photo.telescopio }}</dd>
+            </div>
+        {% endif %}
+        {% if photo.montura %}
+            <div class="meta-item">
+                <dt>Montura</dt>
+                <dd>{{ photo.montura }}</dd>
+            </div>
+        {% endif %}
+        {% if photo.camara %}
+            <div class="meta-item">
+                <dt>Cámara</dt>
+                <dd>{{ photo.camara }}</dd>
+            </div>
+        {% endif %}
+        {% if photo.exposure_info %}
+            <div class="meta-item">
+                <dt>Exposición</dt>
+                <dd>{{ photo.exposure_info }}</dd>
+            </div>
+        {% endif %}
+    </dl>
+
+    <a href="{{ url_for('blog.index') }}" class="back-link">&larr; Volver a la galería</a>
+</article>
+{% endblock %}

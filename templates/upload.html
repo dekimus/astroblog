@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Subir foto{% endblock %}
+
+{% block content %}
+<h1>Subir nueva foto</h1>
+
+<form method="POST" enctype="multipart/form-data" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+        {{ form.title.label }}
+        {{ form.title() }}
+        {% for error in form.title.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </div>
+
+    <div class="field">
+        {{ form.image.label }}
+        {{ form.image() }}
+        {% for error in form.image.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </div>
+
+    <div class="field">
+        {{ form.description.label }}
+        {{ form.description(rows=4) }}
+    </div>
+
+    <div class="field">
+        {{ form.capture_date.label }}
+        {{ form.capture_date() }}
+    </div>
+
+    <div class="field">
+        {{ form.location.label }}
+        {{ form.location() }}
+    </div>
+
+    <div class="field">
+        {{ form.telescopio.label }}
+        {{ form.telescopio() }}
+    </div>
+
+    <div class="field">
+        {{ form.montura.label }}
+        {{ form.montura() }}
+    </div>
+
+    <div class="field">
+        {{ form.camara.label }}
+        {{ form.camara() }}
+    </div>
+
+    <div class="field">
+        {{ form.exposure_info.label }}
+        {{ form.exposure_info() }}
+    </div>
+
+    
+
+    {{ form.submit() }}
+</form>
+{% endblock %}

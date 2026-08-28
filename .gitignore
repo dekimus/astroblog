@@ -1,0 +1,20 @@
+# Entorno virtual
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Variables de entorno (contiene tu SECRET_KEY)
+.env
+
+# Base de datos local
+astroblog.db
+
+# Fotos subidas (no quieres versionar imágenes pesadas en git)
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Editor / SO
+.vscode/
+.DS_Store

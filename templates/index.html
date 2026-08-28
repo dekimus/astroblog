@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Astrogalería</h1>
+
+{% if photos %}
+    <div class="gallery">
+        {% for photo in photos %}
+            <a href="{{ url_for('blog.photo_detail', slug=photo.slug) }}" class="gallery-item">
+                <img src="{{ url_for('static', filename='uploads/' + photo.thumbnail_filename) }}"
+                     alt="{{ photo.title }}">
+                <span class="gallery-title">{{ photo.title }}</span>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Todavía no hay fotos publicadas.</p>
+{% endif %}
+{% endblock %}

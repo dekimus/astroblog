@@ -3,7 +3,7 @@ from flask_login import login_required
 from models import Photo
 from extensions import db
 from forms import PhotoUploadForm
-from utils import generar_slug, procesar_imagen
+from utils import generar_slug, procesar_imagen, eliminar_imagen
 
 
 
@@ -53,3 +53,21 @@ def upload():
         return redirect(url_for("blog.photo_detail", slug=photo.slug))
 
     return render_template("upload.html", form=form)
+
+@blog_bp.route('/photo/<int:photo_id>/delete', methods=['POST'])
+@login_required
+def delete_photo(photo_id):
+    photo = Photo.query.get_or_404(photo_id)
+
+    # Guardar el nombre del archivo antes de borrar el registro
+    filename = photo.filename
+
+    db.session.delete(photo)
+    db.session.commit()
+
+    # Borrar también el archivo físico
+    eliminar_imagen(filename)
+
+    flash('Foto eliminada correctamente.', 'success')
+
+    return redirect(url_for('blog.index'))

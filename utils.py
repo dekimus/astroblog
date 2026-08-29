@@ -55,3 +55,17 @@ def procesar_imagen(archivo):
     imagen_thumb.save(os.path.join(ruta_upload, thumb_filename), quality=85, optimize=True)
 
     return display_filename, thumb_filename, nombre_original
+
+
+def eliminar_imagen(filename):
+    """
+    Elimina la imagen de visualización, la miniatura y la original del sistema de archivos.
+    """
+    ruta_upload = current_app.config["UPLOAD_FOLDER"]
+    display_path = os.path.join(ruta_upload, f"display_{filename}")
+    thumb_path = os.path.join(ruta_upload, f"thumb_{filename}")
+    original_path = os.path.join(ruta_upload, filename)
+
+    for path in [display_path, thumb_path, original_path]:
+        if os.path.exists(path):
+            os.remove(path)

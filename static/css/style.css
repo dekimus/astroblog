@@ -337,6 +337,32 @@ input[type="submit"] {
 
 input[type="submit"]:hover { opacity: 0.9; }
 
+.photo-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.photo-actions form {
+    margin: 0;
+}
+
+.delete-button {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #a93226;
+}
+
+
 /* Footer */
 footer {
     text-align: center;

@@ -58,6 +58,19 @@
         {% endif %}
     </dl>
 
-    <a href="{{ url_for('blog.index') }}" class="back-link">&larr; Volver a la galería</a>
+    <div class="photo-actions">
+        <a href="{{ url_for('blog.index') }}" class="back-link">
+            &larr; Volver a la galería
+        </a>
+
+        <form action="{{ url_for('blog.delete_photo', photo_id=photo.id) }}"
+            method="POST"
+            onsubmit="return confirm('¿Seguro que quieres eliminar esta foto?');">
+            <button type="submit" class="delete-button">
+                🗑 Eliminar foto
+            </button>
+        </form>
+    </div>
+
 </article>
 {% endblock %}

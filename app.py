@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
-from extensions import db, login_manager
+from extensions import db, login_manager, limiter
 from config import Config
 from  models import User
 from flask_talisman import Talisman
@@ -15,7 +15,7 @@ def create_app():
     ## Inicializar extensiones
     db.init_app(app)
     login_manager.init_app(app)
-    
+    limiter.init_app(app)
     @app.cli.command("create-admin")
     @click.argument("username")
     @click.password_option()
@@ -50,6 +50,10 @@ def create_app():
     @app.context_processor
     def inject_now():
         return {"now": datetime.utcnow()}
+    
+    @app.errorhandler(429)
+    def ratelimit_handler(e):
+        return render_template("429.html"), 429
 
     return app
 

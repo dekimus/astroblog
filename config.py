@@ -16,6 +16,7 @@ class Config:
     UPLOAD_FOLDER = os.path.join(BASE_DIR,"static", "uploads")
     ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "tif", "tiff"}
     MAX_CONTENT_LENGTH = 25 * 1024 * 1024  # 25 
-
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
     THUMBNAIL_SIZE = (600, 600)
     DISPLAY_SIZE = (1920, 1920)  

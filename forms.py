@@ -26,6 +26,5 @@ class PhotoUploadForm(FlaskForm):
     camara = StringField('Cámara', validators=[Optional(), Length(max=100)])
     exposure_info = StringField('Exposición', validators=[Optional(), Length(max=100)])
     image = FileField('Imagen',
-                      validators=[FileRequired("Seleccione una imagen"),
-                     FileAllowed(['jpg', 'jpeg', 'png'], 'Solo se permiten imágenes en formato JPG o PNG.')])
+                      validators=[FileRequired("Seleccione una imagen"),])
     submit = SubmitField('Guardar')

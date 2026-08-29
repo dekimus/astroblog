@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app
+from flask_wtf.file import FileAllowed
 from flask_login import login_required
 from models import Photo
 from extensions import db
@@ -25,9 +26,15 @@ def photo_detail(slug):
 @login_required
 def upload():
     form = PhotoUploadForm()
-
+    form.image.validators.append(
+    FileAllowed(list(current_app.config["ALLOWED_EXTENSIONS"]), "Formato de imagen no permitido")
+)
     if form.validate_on_submit():
-        display_filename, thumb_filename, original_filename = procesar_imagen(form.image.data)
+        try:
+            display_filename, thumb_filename, original_filename = procesar_imagen(form.image.data)
+        except Exception:
+            flash("No se pudo procesar el archivo. Asegúrate de que es una imagen válida (JPG, PNG o TIFF).", "danger")
+            return render_template("upload.html", form=form)
         slug = generar_slug(form.title.data)
 
         photo = Photo(

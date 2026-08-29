@@ -3,6 +3,7 @@ from datetime import datetime
 from extensions import db, login_manager
 from config import Config
 from  models import User
+from flask_talisman import Talisman
 import click
 
 
@@ -37,6 +38,14 @@ def create_app():
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(blog_bp)
+    
+    csp = {
+    'default-src': "'self'",
+    'font-src': ["'self'", "https://fonts.gstatic.com"],
+    'style-src': ["'self'", "https://fonts.googleapis.com"],
+}
+
+    Talisman(app, content_security_policy=csp, force_https=False)
     
     @app.context_processor
     def inject_now():

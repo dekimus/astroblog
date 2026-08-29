@@ -39,11 +39,12 @@ def upload():
             original_filename=original_filename,
             capture_date=form.capture_date.data,
             location=form.location.data,
+            bortle=form.bortle.data,
             telescopio=form.telescopio.data,
             montura=form.montura.data,
             camara=form.camara.data,
             exposure_info=form.exposure_info.data,
-            published=form.published.data,
+            
         )
         db.session.add(photo)
         db.session.commit()

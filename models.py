@@ -28,6 +28,7 @@ class Photo(db.Model):
     original_filename = db.Column(db.String(255), nullable=False)
     capture_date = db.Column(db.DateTime, nullable=True)
     location = db.Column(db.String(255), nullable=True)
+    bortle = db.Column(db.String(2), nullable=True)
     telescopio = db.Column(db.String(120), nullable=True)
     montura = db.Column(db.String(120), nullable=True)
     camara = db.Column(db.String(120), nullable=True)

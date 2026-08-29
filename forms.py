@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateField, SelectField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms.validators import DataRequired, Length, Optional
 
@@ -15,6 +15,12 @@ class PhotoUploadForm(FlaskForm):
     description = TextAreaField('Descripción', validators=[Optional(), Length(max=500)])    
     capture_date = DateField("Fecha de captura", validators=[Optional()], format="%Y-%m-%d")
     location = StringField('Ubicación', validators=[Optional(), Length(max=150)])
+    bortle = SelectField(
+        'Escala de Bortle',
+        choices=[(str(i), str(i)) for i in range(1, 10)],
+        validators=[],
+        validate_choice=True
+    )
     telescopio = StringField('Telescopio', validators=[Optional(), Length(max=100)])
     montura = StringField('Montura', validators=[Optional(), Length(max=100)])
     camara = StringField('Cámara', validators=[Optional(), Length(max=100)])

@@ -26,6 +26,12 @@
                 <dd>{{ photo.location }}</dd>
             </div>
         {% endif %}
+        {% if photo.bortle %}
+            <div class="meta-item">
+                <dt>Bortle</dt>
+                <dd>{{ photo.bortle }}</dd>
+            </div>
+        {% endif %}
         {% if photo.telescopio %}
             <div class="meta-item">
                 <dt>Telescopio</dt>

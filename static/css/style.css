@@ -129,6 +129,22 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+/* select */
+.field select {
+    width: 8%;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.15s ease;
+}
+
+
+
 /* Mensajes flash */
 .flashes {
     list-style: none;

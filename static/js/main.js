@@ -70,3 +70,26 @@ document.querySelectorAll(".gallery-item").forEach((item, indice) => {
     item.style.transitionDelay = `${indice * 60}ms`;
     observador.observe(item);
 });
+
+// --- Lightbox de foto ---
+const trigger = document.querySelector(".photo-full-trigger");
+const lightbox = document.getElementById("lightbox");
+
+if (trigger && lightbox) {
+    trigger.addEventListener("click", () => {
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden"; // evita el scroll de fondo mientras está abierto
+    });
+
+    lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) {
+            lightbox.classList.remove("open");
+            document.body.style.overflow = "";
+        }
+    });
+}

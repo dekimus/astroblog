@@ -222,7 +222,7 @@ h1 {
 .description {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
-    max-width: 65ch;
+    max-width: none;
 }
 
 .photo-meta {
@@ -376,4 +376,35 @@ footer {
 @media (max-width: 480px) {
     h1 { font-size: 1.7rem; }
     .nav-links a { margin-left: 1rem; }
+}
+.photo-full-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    display: block;
+    width: 100%;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 26, 0.92);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 2rem;
+}
+
+.lightbox.open {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
 }

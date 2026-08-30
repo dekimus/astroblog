@@ -6,9 +6,14 @@
 <article class="photo-detail">
     <h1>{{ photo.title }}</h1>
 
+    <button class="photo-full-trigger" aria-label="Ver imagen a pantalla completa">
     <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}"
          alt="{{ photo.title }}" class="photo-full">
+    </button>
 
+    <div class="lightbox" id="lightbox">
+        <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}" alt="{{ photo.title }}">
+    </div>
     {% if photo.description %}
         <p class="description">{{ photo.description }}</p>
     {% endif %}
